@@ -321,11 +321,38 @@ class GodASI:
     
     def _generate_new_function(self, thread_id: int) -> bool:
         """Minta AI untuk membuat fungsi baru yang berguna, bisa import library"""
-        prompt = """Buatlah sebuah fungsi Python baru yang berguna untuk sistem AI ini. 
-Fungsi boleh menggunakan library eksternal jika diperlukan, tetapi pastikan untuk mengimportnya.
-Fungsi harus memiliki docstring yang jelas, melakukan sesuatu yang bermanfaat (misalnya kalkulasi matematika, manipulasi data, utilitas).
-Berikan nama fungsi yang deskriptif dan unik. Hindari konflik dengan fungsi yang sudah ada.
-Hanya berikan kode Python murni, tanpa penjelasan. Format: def nama_fungsi(parameter): ..."""
+        prompt = """
+Buat sebuah fungsi Python baru untuk ditambahkan ke dalam sistem ini.
+
+Tujuan utama adalah menghasilkan variasi kode baru (code mutation / evolution).
+Fungsi boleh melakukan tugas apa saja yang berguna atau menarik, seperti:
+- manipulasi data
+- utilitas teks
+- kalkulasi matematika
+- eksperimen algoritma
+- analisis sederhana
+- transformasi struktur data
+- helper function untuk sistem AI
+
+Aturan umum:
+1. Fungsi harus benar-benar baru dan memiliki nama unik.
+2. Gunakan gaya snake_case untuk nama fungsi.
+3. Boleh menggunakan library Python apa pun jika diperlukan, dan sertakan import.
+4. Boleh membuat helper function tambahan jika membantu.
+5. Usahakan fungsi memiliki logika yang jelas dan tidak trivial.
+6. Sertakan docstring yang menjelaskan tujuan fungsi dan cara penggunaannya.
+7. Kode harus valid Python dan dapat dijalankan tanpa modifikasi.
+
+Kebebasan:
+- Boleh menggunakan algoritma apa saja.
+- Boleh membuat struktur logika yang kreatif.
+- Boleh melakukan eksperimen dengan data atau perhitungan.
+
+Output:
+Berikan hanya kode Python murni.
+Jangan berikan penjelasan atau teks tambahan di luar kode.
+Format: def nama_fungsi(parameter): .
+"""
         
         response = self._ask_ai_for_code(prompt)
         if not response:
